@@ -4,19 +4,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-parser = ArgumentParser()
-parser.add_argument("--text", help="text string from twitter to analyze", required=True)
-args = parser.parse_args()
-search_string = args.text
-file_path = 'archive/' + search_string.replace(' ', '_') + '.csv'
-
-df = pd.read_csv(file_path)
-num_tweets = df.shape[0]
-
-print('Classifying dataset of {} tweets.'.format(num_tweets))
-analyser = SentimentIntensityAnalyzer()
-
 def classify_sentiment(text):
+    analyser = SentimentIntensityAnalyzer()
     sentiment_dict = analyser.polarity_scores(text)
     compound_sentiment = sentiment_dict['compound']
     return compound_sentiment
@@ -36,21 +25,49 @@ def get_year(stamp):
     year = split_stamp(stamp)[0]
     return year
 
-df['day'] = df['timestamp'].apply(get_day)
-df['month'] = df['timestamp'].apply(get_month)
-df['year'] = df['timestamp'].apply(get_year)
-df['sentiment'] = df['text'].apply(classify_sentiment)
+def main():
+    parser = ArgumentParser()
+    parser.add_argument("--text", help="text string from twitter to analyze", required=True)
+    parser.add_argument("--user", help="limit to tweets from specified user", default='empty')
+    args = parser.parse_args()
+    text = args.text
+    user = args.user
 
-days = list(set(df['day'].tolist()))
-average_sentiments = []
+    if user == 'empty':
+        file_path = 'archive/' + text.replace(' ', '_') + '.csv'
+        plot_title_text = text
+    else:
+        text_with_user = text + ' from:{}'.format(user)
+        file_path = 'archive/' + text_with_user.replace(' ', '_') + '.csv'
+        plot_title_text = text_with_user
 
-for day in days:
-    sentiments = df[df['day'] == day]['sentiment'].tolist()
-    average_sentiment = np.mean(sentiments)
-    average_sentiments.append(average_sentiment)
+    df = pd.read_csv(file_path)
+    num_tweets = df.shape[0]
+    print('Classifying dataset of {} tweets.'.format(num_tweets))
 
-plt.bar([int(day) for day in days], average_sentiments, label='Daily Average Sentiment', color = 'c')
-plt.xlabel('Day in November 2018')
-plt.ylabel('Daily Average Sentiment')
-plt.title('Daily Average Sentiment for Tweets Containing the Phrase \"{}\"'.format(search_string))
-plt.show()
+    df['day'] = df['timestamp'].apply(get_day)
+    df['month'] = df['timestamp'].apply(get_month)
+    df['year'] = df['timestamp'].apply(get_year)
+    df['sentiment'] = df['text'].apply(classify_sentiment)
+
+    pd.set_option('display.max_columns', 500)
+    print(df.head())
+
+    # the following assumes we only have a month of data
+
+    days = list(set(df['day'].tolist()))
+    average_sentiments = []
+
+    for day in days:
+        sentiments = df[df['day'] == day]['sentiment'].tolist()
+        average_sentiment = np.mean(sentiments)
+        average_sentiments.append(average_sentiment)
+
+    plt.bar([int(day) for day in days], average_sentiments, label='Daily Average Sentiment', color = 'c')
+    plt.xlabel('Day in November 2018')
+    plt.ylabel('Daily Average Sentiment')
+    plt.title('Daily Average Sentiment for Tweets from Advanced Query: \"{}\"'.format(plot_title_text))
+    plt.show()
+
+if __name__ == '__main__':
+    main()
