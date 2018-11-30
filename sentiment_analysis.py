@@ -55,13 +55,13 @@ def add_daily_average_sentiment(df, dates_sentiments):
     return df
 
 def clean_and_sort_df(df, sort_col='timestamp'):
-    
+
     cols = ['tweet-id','user','fullname','text','day_timestamp','day_average_sentiment','timestamp','likes','replies','retweets']
     df = df[cols]
     df = df.sort_values(by=sort_col)
     df['day_timestamp'] = pd.to_datetime(df.day_timestamp)
     return df
-    
+
 def plot_dates_sentiments(df, plot_title_text):
 
     timestamps = df['day_timestamp'].tolist()
@@ -97,11 +97,11 @@ def main():
     df['month'] = df['timestamp'].apply(get_month)
     df['year'] = df['timestamp'].apply(get_year)
     df['sentiment'] = df['text'].apply(classify_sentiment)
-    
+
     dates_sentiments = dates_and_average_sentiment(df, year='2018')
     df = add_daily_average_sentiment(df, dates_sentiments)
     df = clean_and_sort_df(df)
-    
+
     save_text = plot_title_text.replace(' ', '_')
     df.to_csv('dashboard_archive/{}.csv'.format(save_text), index=False)
     plot_dates_sentiments(df, plot_title_text)
