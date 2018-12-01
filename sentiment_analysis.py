@@ -31,19 +31,21 @@ def get_year(stamp):
     year = split_stamp(stamp)[0]
     return year
 
-def dates_and_average_sentiment(df, year='2018'):
+def dates_and_average_sentiment(df):
 
     time_sentiment_dict = {}
-    df = df[df['year'] == year]
-    months = list(set(df['month'].tolist()))
-    for month in months:
-        month_df = df[df['month'] == month]
-        days = list(set(month_df['day'].tolist()))
-        for day in days:
-            sentiments = month_df[month_df['day'] == day]['sentiment'].tolist()
-            average_sentiment = np.mean(sentiments)
-            month_day_string = year + '-' + month + '-' + day
-            time_sentiment_dict[month_day_string] = average_sentiment
+    years = list(set(df['year'].tolist()))
+    for year in years:
+        year_df = df[df['year'] == year]
+        months = list(set(year_df['month'].tolist()))
+        for month in months:
+            month_df = year_df[year_df['month'] == month]
+            days = list(set(month_df['day'].tolist()))
+            for day in days:
+                sentiments = month_df[month_df['day'] == day]['sentiment'].tolist()
+                average_sentiment = np.mean(sentiments)
+                month_day_string = year + '-' + month + '-' + day
+                time_sentiment_dict[month_day_string] = average_sentiment
     date_key = lambda x: datetime.strptime(x[0], '%Y-%m-%d')
     ordered_dict = dict(sorted(time_sentiment_dict.items(), key=date_key))
     return ordered_dict
@@ -56,7 +58,7 @@ def add_daily_average_sentiment(df, dates_sentiments):
 
 def clean_and_sort_df(df, sort_col='timestamp'):
 
-    cols = ['tweet-id','user','fullname','text','day_timestamp','day_average_sentiment','timestamp','likes','replies','retweets']
+    cols = ['tweet-id','user','fullname','text','timestamp','day_timestamp','sentiment','day_average_sentiment','likes','replies','retweets']
     df = df[cols]
     df = df.sort_values(by=sort_col)
     df['day_timestamp'] = pd.to_datetime(df.day_timestamp)
@@ -98,7 +100,7 @@ def main():
     df['year'] = df['timestamp'].apply(get_year)
     df['sentiment'] = df['text'].apply(classify_sentiment)
 
-    dates_sentiments = dates_and_average_sentiment(df, year='2018')
+    dates_sentiments = dates_and_average_sentiment(df)
     df = add_daily_average_sentiment(df, dates_sentiments)
     df = clean_and_sort_df(df)
 

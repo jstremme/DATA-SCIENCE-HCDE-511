@@ -58,7 +58,7 @@ def add_daily_average_sentiment(df, dates_sentiments):
 
 def clean_and_sort_df(df, sort_col='timestamp'):
 
-    cols = ['source','text','favorite_count','id_str','day_timestamp','day_average_sentiment','timestamp']
+    cols = ['source','text','favorite_count','id_str','timestamp','day_timestamp','sentiment','day_average_sentiment',]
     df = df[cols]
     df = df.sort_values(by=sort_col)
     df['day_timestamp'] = pd.to_datetime(df.day_timestamp)
