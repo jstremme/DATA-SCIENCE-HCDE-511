@@ -1,3 +1,5 @@
+from sklearn.preprocessing import StandardScaler
+import numpy as np
 import pandas as pd
 pd.set_option('display.max_columns', 50)
 
@@ -22,6 +24,10 @@ all_stocks = all_stocks.drop_duplicates()
 
 all_stocks = all_stocks[['Date', 'Open', 'Close', 'Index']]
 all_stocks = all_stocks.rename(index=str, columns={"Date": "day_timestamp"})
+
+scaler = StandardScaler()
+close_prices = all_stocks['Close'].values.reshape(-1, 1)
+all_stocks['Scaled Close'] = scaler.fit_transform(close_prices)
 
 final_df = pd.merge(all_stocks, all_tweets, on='day_timestamp', how='left')
 final_df.to_csv('final_datasets/tableau_input1.csv', index=False)
