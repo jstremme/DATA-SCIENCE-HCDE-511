@@ -1,4 +1,5 @@
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 import pandas as pd
 pd.set_option('display.max_columns', 50)
@@ -25,9 +26,12 @@ all_stocks = all_stocks.drop_duplicates()
 all_stocks = all_stocks[['Date', 'Open', 'Close', 'Index']]
 all_stocks = all_stocks.rename(index=str, columns={"Date": "day_timestamp"})
 
-scaler = StandardScaler()
+standard_scaler = StandardScaler()
+minmax_scaler = MinMaxScaler(feature_range=(-1, 1))
 close_prices = all_stocks['Close'].values.reshape(-1, 1)
-all_stocks['Scaled Close'] = scaler.fit_transform(close_prices)
+all_stocks['standard_scaled_close'] = standard_scaler.fit_transform(close_prices)
+all_stocks['minmax_scaled_close'] = minmax_scaler.fit_transform(close_prices)
 
 final_df = pd.merge(all_stocks, all_tweets, on='day_timestamp', how='left')
 final_df.to_csv('final_datasets/tableau_input1.csv', index=False)
+print(final_df.sample(100).head(100))
