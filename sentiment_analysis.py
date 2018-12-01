@@ -69,7 +69,7 @@ def plot_dates_sentiments(df, plot_title_text):
     timestamps = df['day_timestamp'].tolist()
     average_sentiments = df['day_average_sentiment'].tolist()
     plt.bar(timestamps, average_sentiments, label='Daily Average Sentiment', color = 'c')
-    plt.xlabel('Day in 2018')
+    plt.xlabel('Day')
     plt.ylabel('Daily Average Sentiment')
     plt.title('Daily Average Sentiment for Tweets from Advanced Query: \"{}\"'.format(plot_title_text))
     plt.show()
