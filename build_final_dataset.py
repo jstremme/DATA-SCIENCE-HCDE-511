@@ -8,7 +8,7 @@ for tweet_source in tweets:
 	tweet_dfs.append(df)
 
 all_tweets = pd.concat(tweet_dfs, ignore_index=True)
-all_tweets = all_tweets.drop_duplicates(subset=['day_timestamp', 'text', 'sentiment', 'user'])
+all_tweets = all_tweets.drop_duplicates(subset=['text'])
 
 stocks = ['^DJI', '^GSPC', 'AMZN', 'XOM']
 stock_dfs = []
