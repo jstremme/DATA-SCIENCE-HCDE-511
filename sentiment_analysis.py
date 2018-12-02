@@ -96,6 +96,7 @@ def main():
     num_tweets = df.shape[0]
     print('Classifying dataset of {} tweets.'.format(num_tweets))
 
+    df['text'] = df['text'].astype(str)
     df['day'] = df['timestamp'].apply(get_day)
     df['month'] = df['timestamp'].apply(get_month)
     df['year'] = df['timestamp'].apply(get_year)
