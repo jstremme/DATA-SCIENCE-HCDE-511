@@ -18,17 +18,17 @@ def split_stamp(stamp):
 
 def get_day(stamp):
 
-    day = split_stamp(stamp)[2].split(' ')[0]
+    day = split_stamp(stamp)[1]
     return day
 
 def get_month(stamp):
 
-    month = split_stamp(stamp)[1]
+    month = split_stamp(stamp)[0]
     return month
 
 def get_year(stamp):
 
-    year = split_stamp(stamp)[0]
+    year = split_stamp(stamp)[2].split(' ')[0]
     return year
 
 def dates_and_average_sentiment(df):
@@ -44,9 +44,9 @@ def dates_and_average_sentiment(df):
             for day in days:
                 sentiments = month_df[month_df['day'] == day]['sentiment'].tolist()
                 average_sentiment = np.mean(sentiments)
-                month_day_string = year + '-' + month + '-' + day
+                month_day_string = month + '-' + day + '-' + year
                 time_sentiment_dict[month_day_string] = average_sentiment
-    date_key = lambda x: datetime.strptime(x[0], '%Y-%m-%d')
+    date_key = lambda x: datetime.strptime(x[0], '%m-%d-%Y')
     ordered_dict = dict(sorted(time_sentiment_dict.items(), key=date_key))
     return ordered_dict
 
@@ -58,56 +58,40 @@ def add_daily_average_sentiment(df, dates_sentiments):
 
 def clean_and_sort_df(df, sort_col='timestamp'):
 
-    cols = ['tweet-id','user','fullname','text','timestamp','day_timestamp','sentiment','day_average_sentiment','likes','replies','retweets']
+    cols = ['source','text','favorite_count','id_str','timestamp','day_timestamp','sentiment','day_average_sentiment',]
     df = df[cols]
     df = df.sort_values(by=sort_col)
     df['day_timestamp'] = pd.to_datetime(df.day_timestamp)
     return df
 
-def plot_dates_sentiments(df, plot_title_text):
+def plot_dates_sentiments(df):
 
     timestamps = df['day_timestamp'].tolist()
     average_sentiments = df['day_average_sentiment'].tolist()
     plt.bar(timestamps, average_sentiments, label='Daily Average Sentiment', color = 'c')
     plt.xlabel('Day')
     plt.ylabel('Daily Average Sentiment')
-    plt.title('Daily Average Sentiment for Tweets from Advanced Query: \"{}\"'.format(plot_title_text))
+    plt.title('Daily Average Sentiment for Trump Tweets')
     plt.show()
 
 def main():
 
-    parser = ArgumentParser()
-    parser.add_argument("--text", help="text string from twitter to analyze", required=True)
-    parser.add_argument("--user", help="limit to tweets from specified user", default='empty')
-    args = parser.parse_args()
-    text = args.text
-    user = args.user
-
-    if user == 'empty':
-        file_path = 'scrape_archive/' + text.replace(' ', '_') + '.csv'
-        plot_title_text = text
-    else:
-        text_with_user = text + ' from:{}'.format(user)
-        file_path = 'scrape_archive/' + text_with_user.replace(' ', '_') + '.csv'
-        plot_title_text = text_with_user
-
-    df = pd.read_csv(file_path)
-    df = df.drop_duplicates(subset=['text'])
+    df = pd.read_csv('trump_archive/trump_tweets_jan2016_oct2018.csv')
     num_tweets = df.shape[0]
     print('Classifying dataset of {} tweets.'.format(num_tweets))
+
+    df['timestamp'] = df['created_at']
+    df = df.drop('created_at', 1)
 
     df['day'] = df['timestamp'].apply(get_day)
     df['month'] = df['timestamp'].apply(get_month)
     df['year'] = df['timestamp'].apply(get_year)
     df['sentiment'] = df['text'].apply(classify_sentiment)
-
     dates_sentiments = dates_and_average_sentiment(df)
     df = add_daily_average_sentiment(df, dates_sentiments)
     df = clean_and_sort_df(df)
-
-    save_text = plot_title_text.replace(' ', '_')
-    df.to_csv('dashboard_archive/{}.csv'.format(save_text), index=False)
-    plot_dates_sentiments(df, plot_title_text)
+    df.to_csv('dashboard_archive/trump_tweets.csv', index=False)
+    plot_dates_sentiments(df)
 
 if __name__ == '__main__':
 

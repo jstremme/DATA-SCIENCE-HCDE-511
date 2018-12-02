@@ -13,7 +13,7 @@ def main():
 
     parser = ArgumentParser()
     parser.add_argument("--text", help="text string to scrape for", required=True)
-    parser.add_argument("--bd", help="begin date for tweet search", default='2016-01-01')
+    parser.add_argument("--bd", help="begin date for tweet search", default='2018-04-01')
     parser.add_argument("--ed", help="end date for tweet search", default='2018-10-31')
     parser.add_argument("--user", help="limit to tweets from specified user", default='empty')
     parser.add_argument("--limit", help="limit to tweets from specified user", default=50000)

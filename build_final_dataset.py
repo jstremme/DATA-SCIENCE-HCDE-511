@@ -4,14 +4,12 @@ import numpy as np
 import pandas as pd
 pd.set_option('display.max_columns', 50)
 
-tweets = ['economy_from:' + x for x in ['FoxNews', 'MSNBC', 'CNN', 'realDonaldTrump']]
+tweets = ['economy_from:' + x for x in ['FoxNews', 'MSNBC', 'CNN', 'realDonaldTrump', 'WSJ']]
 tweet_dfs = []
 for tweet_source in tweets:
 	df = pd.read_csv('dashboard_archive/{}.csv'.format(tweet_source))
 	tweet_dfs.append(df)
-
 all_tweets = pd.concat(tweet_dfs, ignore_index=True)
-all_tweets = all_tweets.drop_duplicates(subset=['text'])
 
 stocks = ['^DJI', '^GSPC', 'AMZN', 'XOM']
 stock_dfs = []
@@ -33,5 +31,5 @@ all_stocks['standard_scaled_close'] = standard_scaler.fit_transform(close_prices
 all_stocks['minmax_scaled_close'] = minmax_scaler.fit_transform(close_prices)
 
 final_df = pd.merge(all_stocks, all_tweets, on='day_timestamp', how='left')
-final_df.to_csv('final_datasets/tableau_input1.csv', index=False)
+final_df.to_csv('final_datasets/tableau_input2.csv', index=False)
 print(final_df.sample(100).head(100))
