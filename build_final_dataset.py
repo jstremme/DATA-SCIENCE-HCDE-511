@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 pd.set_option('display.max_columns', 50)
 
-tweets = ['economy_from:' + x for x in ['FoxNews', 'MSNBC', 'CNN', 'realDonaldTrump', 'WSJ']]
+tweets = ['economy_from:' + x for x in ['FoxNews', 'MSNBC', 'CNN', 'realDonaldTrump', 'WSJ']] + ['_from:elonmusk']
 tweet_dfs = []
 for tweet_source in tweets:
 	df = pd.read_csv('dashboard_archive/{}.csv'.format(tweet_source))

@@ -1,7 +1,12 @@
 tweet-id,user,fullname,text,timestamp,day_timestamp,sentiment,day_average_sentiment,likes,replies,retweets
+981146809425854464,MSNBC,MSNBC,President Trump broke out his best talking points on the military and economy to entertain the kids at the annual White House Easter egg roll https://on.msnbc.com/2H4wa8A ,2018-04-03 12:30:02,2018-04-03,0.5719,0.28595,499,570,261
+981180200250757120,MSNBC,MSNBC,"EPA Chief Scott Pruitt announces ""process"" to review standards for fuel economy in cars: 
+
+""I am determining that those standards are inappropriate and should be revised."" pic.twitter.com/w58iB2Niam",2018-04-03 14:42:43,2018-04-03,0.0,0.28595,121,492,127
+982236065271435267,MSNBC,MSNBC,"JUST IN: U.S. economy adds 103,000 jobs in March. Unemployment remains at 4.1% pic.twitter.com/uenozotMVi",2018-04-06 12:38:21,2018-04-06,-0.4404,-0.4404,119,78,88
 989884279575412737,MSNBC,MSNBC,The US economy slowed in the first quarter by 2.3 % as consumer spending grew at its weakest pace in nearly five years. https://on.msnbc.com/2Fm3TYT ,2018-04-27 15:09:38,2018-04-27,-0.5106,-0.5106,89,50,111
 992385193335017473,MSNBC,MSNBC,"The nation’s unemployment rate fell to 3.9 percent for the first time since 2000, with the economy gaining 164,000 jobs in April, according to data just released from the Department of Labor. https://on.msnbc.com/2KCRa82 ",2018-05-04 12:47:22,2018-05-04,-0.0258,-0.0258,112,130,46
-993988993833492480,MSNBC,MSNBC,A leaked memo from the EPA indicates the White House plans to nix the fuel economy of the average light vehicle from 54.5 mpg to just under 42 mpg. https://on.msnbc.com/2rsGcJe ,2018-05-08 23:00:18,2018-05-08,-0.3182,-0.3182,71,42,104
+993988993833492480,MSNBC,MSNBC,A leaked memo from the EPA indicates the White House plans to nix the fuel economy of the average light vehicle from 54.5 mpg to just under 42 mpg. https://on.msnbc.com/2rsGcJe ,2018-05-08 23:00:18,2018-05-08,-0.3182,-0.3182,70,42,104
 994947505002631168,MSNBC,MSNBC,"Steve Rattner explains the economy not necessarily stronger under Trump.
 
 Take a look at the numbers. 
@@ -37,7 +42,7 @@ Sen. Ron Johnson reportedly said, ""this is becoming more and more like a Soviet
 1022840062445346816,MSNBC,MSNBC,"President Trump is giving remarks on the economy at the White House
 
 TUNE in to @MSNBC for live coverage.pic.twitter.com/scTuKCQhuR",2018-07-27 13:44:08,2018-07-27,0.34,0.38102,88,460,50
-1022939443936804864,MSNBC,MSNBC,US economy grew 4.1 percent in second quarter https://on.msnbc.com/2LKRZ1K ,2018-07-27 20:19:03,2018-07-27,0.0,0.38102,37,39,8
+1022939443936804864,MSNBC,MSNBC,US economy grew 4.1 percent in second quarter https://on.msnbc.com/2LKRZ1K ,2018-07-27 20:19:03,2018-07-27,0.0,0.38102,36,39,8
 1023937709054812160,MSNBC,MSNBC,"Keith Koffler: If Trump is disciplined enough to make the economy his headline, there's not much Democrats can do to counteract his message. (via @NBCNewsTHINK) https://on.msnbc.com/2NX0QLs ",2018-07-30 14:25:48,2018-07-30,0.0,0.0,41,176,19
 1023982833063346176,MSNBC,MSNBC,"President Trump's numbers on the economy don’t add up.
 
@@ -56,7 +61,7 @@ Watch @CNBC's @SaraEisen weigh in on the numbers.https://on.msnbc.com/2LZ6Q8Y "
 1025437176576847872,MSNBC,MSNBC,"The U.S. economy added 157,000 jobs in July, and the unemployment rate is at 3.9%.
 
 Watch @AliVelshi break down the numbers and explain why wage growth still remains stagnant.https://on.msnbc.com/2KpFV1s ",2018-08-03 17:44:09,2018-08-03,-0.0772,-0.10215,101,37,75
-1025879100764897287,MSNBC,MSNBC,What is the reasoning behind the Trump administration’s move to weaken fuel economy standards? https://on.msnbc.com/2OKJ8fd ,2018-08-04 23:00:12,2018-08-04,-0.4215,-0.4215,48,37,36
+1025879100764897287,MSNBC,MSNBC,What is the reasoning behind the Trump administration’s move to weaken fuel economy standards? https://on.msnbc.com/2OKJ8fd ,2018-08-04 23:00:12,2018-08-04,-0.4215,-0.4215,47,37,36
 1029140631078273025,MSNBC,MSNBC,"Iowans say economy, wages & healthcare should be top priority in 2020 https://on.msnbc.com/2KQ61e3 ",2018-08-13 23:00:21,2018-08-13,0.2023,0.2023,94,25,37
 1037018795179757569,MSNBC,MSNBC,"""The advantage that the Democrats seem to have at the moment is so much greater than what you would expect in an economy of this strength.""
 
@@ -67,13 +72,15 @@ Watch @AliVelshi break down the numbers and explain why wage growth still remain
 Watch @AliVelshi break down the numbers.https://on.msnbc.com/2CucyfK ",2018-09-07 19:24:06,2018-09-07,0.0,-0.2202,57,36,26
 1039225455608582144,MSNBC,MSNBC,".@HallieJackson: Is the timing of this briefing on economic numbers related to Former President Obama's remarks on the economy?
 
-Kevin Hassett, Chairman of the Council of Economic Advisors: ""There's not in any way a timing that's related to President Obama's Friday remarks."" pic.twitter.com/8tsH7H3ETk",2018-09-10 18:53:51,2018-09-10,0.0,0.1909,282,160,102
+Kevin Hassett, Chairman of the Council of Economic Advisors: ""There's not in any way a timing that's related to President Obama's Friday remarks."" pic.twitter.com/8tsH7H3ETk",2018-09-10 18:53:51,2018-09-10,0.0,0.1909,281,160,102
 1039272381464956928,MSNBC,MSNBC,"Trump vs. Obama: who gets credit for the booming economy?
 
 It was president versus president this weekend, when it comes to the booming economy. @SRuhle discusses who should get the credit:https://on.msnbc.com/2CH9RaC ",2018-09-10 22:00:19,2018-09-10,0.3818,0.1909,418,750,178
 1040651820849344513,MSNBC,MSNBC,"Polling numbers show that voters care about economic issues – so why aren’t we hearing all that much from Republican candidates on the economy?
 
 Watch @SRuhle explain.https://on.msnbc.com/2OoY0iH ",2018-09-14 17:21:43,2018-09-14,0.4939,0.4939,87,49,39
+1042459012447514627,MSNBC,MSNBC,"Talking through the details: President Trump, China, the tariffs, the products and the US economy - @AliVelshipic.twitter.com/M6FKJofodo",2018-09-19 17:02:51,2018-09-19,0.0,0.0,61,21,40
+1044231662404608000,MSNBC,MSNBC,"Fact check: The economy is booming. Who gets credit, Trump or Obama? https://on.msnbc.com/2MX6ITT ",2018-09-24 14:26:43,2018-09-24,0.3818,0.3818,287,574,135
 1048192377771495424,MSNBC,MSNBC,"The US economy continued its 9-year expansion, with unemployment rate the lowest since 1969, but the average monthly jobs was lowest  total so far in 2018. https://nbcnews.to/2OIWHyu ",2018-10-05 12:45:11,2018-10-05,-0.7311,-0.7311,38,45,22
 1054386951493767169,MSNBC,MSNBC,"""This is a very old, traditional, dinosaur tactic.""
 
