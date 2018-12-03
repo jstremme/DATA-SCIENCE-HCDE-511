@@ -4,24 +4,24 @@ import numpy as np
 import pandas as pd
 pd.set_option('display.max_columns', 50)
 
-tweets = ['economy_from:' + x for x in ['FoxNews', 'MSNBC', 'CNN', 'realDonaldTrump', 'WSJ', 'cnbc']] + ['_from:elonmusk']
-tweet_dfs = []
-for tweet_source in tweets:
-	df = pd.read_csv('dashboard_archive/{}.csv'.format(tweet_source))
-	tweet_dfs.append(df)
+single_accounts = ['_from:elonmusk']
+economy_tweets_news_accounts = ['economy_from:' + x for x in ['FoxNews', 'MSNBC', 'CNN', 'WSJ', 'cnbc']]
+
+tweets = economy_tweets_news_accounts + single_accounts
+tweet_dfs = [pd.read_csv('dashboard_archive/{}.csv'.format(source)) for source in tweets]
 all_tweets = pd.concat(tweet_dfs, ignore_index=True)
 
-stocks = ['^DJI', '^GSPC', 'AMZN', 'XOM']
+stocks = ['^DJI', '^GSPC', 'AMZN', 'XOM', 'TSLA']
 stock_dfs = []
 for stock in stocks:
 	df = pd.read_csv('stock_archive/{}.csv'.format(stock))
-	df['Index'] = stock
+	df['Symbol'] = stock
 	stock_dfs.append(df)
 
 all_stocks = pd.concat(stock_dfs, ignore_index=True)
 all_stocks = all_stocks.drop_duplicates()
 
-all_stocks = all_stocks[['Date', 'Open', 'Close', 'Index']]
+all_stocks = all_stocks[['Date', 'Open', 'Close', 'Volume', 'Symbol']]
 all_stocks = all_stocks.rename(index=str, columns={"Date": "day_timestamp"})
 
 standard_scaler = StandardScaler()
