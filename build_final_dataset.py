@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 pd.set_option('display.max_columns', 50)
 
-single_accounts = ['_from:elonmusk']
-economy_tweets_news_accounts = ['economy_from:' + x for x in ['FoxNews', 'MSNBC', 'CNN', 'WSJ', 'cnbc']]
+single_accounts = ['_from:elonmusk'] + ['_from:realDonaldTrump']
+economy_tweets_news_accounts = ['economy_from:' + x for x in ['FoxNews', 'CNN', 'WSJ', 'cnbc']]
 
 tweets = economy_tweets_news_accounts + single_accounts
 tweet_dfs = [pd.read_csv('dashboard_archive/{}.csv'.format(source)) for source in tweets]
