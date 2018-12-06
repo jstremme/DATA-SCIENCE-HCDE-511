@@ -4,6 +4,24 @@ import numpy as np
 import pandas as pd
 pd.set_option('display.max_columns', 50)
 
+def isNaN(num):
+    return num != num
+
+def a(user):
+	if isNaN(user):
+		return float('NaN')
+	else:
+		return user_retweet_dict[user]
+
+def d(row):
+	user = row['user']
+	retweets = row['retweets']
+	if isNaN(user):
+		return float('NaN')
+	else:
+		user_average = user_retweet_dict[user]
+		return retweets - user_average
+
 single_accounts = ['_from:elonmusk'] + ['_from:realDonaldTrump']
 economy_tweets_news_accounts = ['economy_from:' + x for x in ['FoxNews', 'CNN', 'WSJ', 'cnbc']]
 
@@ -30,6 +48,13 @@ close_prices = all_stocks['Close'].values.reshape(-1, 1)
 all_stocks['standard_scaled_close'] = standard_scaler.fit_transform(close_prices)
 all_stocks['minmax_scaled_close'] = minmax_scaler.fit_transform(close_prices)
 
-final_df = pd.merge(all_stocks, all_tweets, on='day_timestamp', how='left')
-final_df.to_csv('final_datasets/tableau_input3.csv', index=False)
-print(final_df.sample(100).head(100))
+df = pd.merge(all_stocks, all_tweets, on='day_timestamp', how='left')
+
+mean_df = df.groupby('user', as_index=False)['retweets'].mean()
+user_retweet_dict = dict(zip(mean_df['user'].tolist(), mean_df['retweets'].tolist()))
+
+df['average'] = df['user'].apply(a)
+df['difference'] = df.apply(d, axis=1)
+
+df.to_csv('final_datasets/tableau_input4.csv', index=False)
+print(df.sample(100).head(100))
