@@ -24,7 +24,7 @@
           </named-connection>
         </named-connections>
         <relation connection='excel-direct.0lsamyl1nq055s147yp400j56dc4' name='tableau_input3' table='[tableau_input3$]' type='table'>
-          <columns gridOrigin='A1:Q10001:no:A1:Q10001:0' header='yes' outcome='2'>
+          <columns gridOrigin='A1:S10001:no:A1:S2147483647:0' header='yes' outcome='6'>
             <column datatype='date' name='day_timestamp' ordinal='0' />
             <column datatype='real' name='Open' ordinal='1' />
             <column datatype='real' name='Close' ordinal='2' />
@@ -42,6 +42,8 @@
             <column datatype='integer' name='likes' ordinal='14' />
             <column datatype='integer' name='replies' ordinal='15' />
             <column datatype='integer' name='retweets' ordinal='16' />
+            <column datatype='real' name='average' ordinal='17' />
+            <column datatype='real' name='difference' ordinal='18' />
           </columns>
         </relation>
         <metadata-records>
@@ -293,6 +295,36 @@
               <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
             </attributes>
           </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>average</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[average]</local-name>
+            <parent-name>[tableau_input3]</parent-name>
+            <remote-alias>average</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>difference</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[difference]</local-name>
+            <parent-name>[tableau_input3]</parent-name>
+            <remote-alias>difference</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
           <metadata-record class='capability'>
             <remote-name />
             <remote-type>0</remote-type>
@@ -301,10 +333,10 @@
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
             <attributes>
-              <attribute datatype='integer' name='context'>0</attribute>
-              <attribute datatype='string' name='gridOrigin'>&quot;A1:Q10001:no:A1:Q10001:0&quot;</attribute>
+              <attribute datatype='integer' name='context'>2</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:S10001:no:A1:S2147483647:0&quot;</attribute>
               <attribute datatype='boolean' name='header'>true</attribute>
-              <attribute datatype='integer' name='outcome'>2</attribute>
+              <attribute datatype='integer' name='outcome'>6</attribute>
             </attributes>
           </metadata-record>
         </metadata-records>
@@ -343,7 +375,7 @@
         <folder-item name='[Open]' type='field' />
         <folder-item name='[Volume]' type='field' />
       </folder>
-      <layout dim-ordering='alphabetic' dim-percentage='0.380814' group-percentage='0.0857558' measure-ordering='alphabetic' measure-percentage='0.447674' parameter-percentage='0.0857558' show-structure='false' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.367508' group-percentage='0.0694006' measure-ordering='alphabetic' measure-percentage='0.495268' parameter-percentage='0.0678233' show-structure='false' />
       <style>
         <style-rule element='mark'>
           <encoding attr='color' field='[:Measure Names]' type='palette'>
