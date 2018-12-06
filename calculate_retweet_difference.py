@@ -3,7 +3,6 @@ import numpy as np
 import math
 
 pd.set_option('display.max_columns', 50)
-
 df = pd.read_excel('final_viz/tableau_input3.xlsx')
 
 mean_df = df.groupby('user', as_index=False)['retweets'].mean()
@@ -30,4 +29,4 @@ def d(row):
 df['average'] = df['user'].apply(a)
 df['difference'] = df.apply(d, axis=1)
 
-df.to_excel('final_datasets/tableau_input3.xlsx', index=False)
+df.to_csv('final_datasets/tableau_input4.csv', index=False)
